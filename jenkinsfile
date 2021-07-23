@@ -3,7 +3,7 @@ pipeline
     agent any
     stages
     {
-        stage('Continuos Download')
+        stage('Continuos Loans')
         {
             steps
             {
@@ -16,25 +16,6 @@ pipeline
                     catch(Exception e1)
                     {
                         mail bcc: '', body: 'Jenkins unable to download  the code from remote github', cc: '', from: '', replyTo: '', subject: 'Download Failed', to: 'balasubrahmanyam.vasamsetti@outlook.com'
-                        exit(1)
-                    }
-                }
-                
-            }
-        }
-        stage('Continuos Build')
-        {
-            steps
-            {
-                script
-                {
-                    try
-                    {
-                      sh 'mvn package'  
-                    }
-                    catch(Exception e2)
-                    {
-                        mail bcc: '', body: 'Jenkins unable to build the artifact from remote github code', cc: '', from: '', replyTo: '', subject: 'Download Failed', to: 'balasubrahmanyam.vasamsetti@cyient.com'
                         exit(1)
                     }
                 }
